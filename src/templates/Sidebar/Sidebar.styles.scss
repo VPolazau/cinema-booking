@@ -1,0 +1,48 @@
+.sidebar__burger-btn {
+  position: absolute;
+  z-index: 10;
+
+  span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.sidebar-desktop {
+  padding-right: 8px;
+  width: 20vw;
+  border-right: gray 1px solid;
+  height: calc(100vh - 16px);
+  transition: transform 0.4s ease-in-out, opacity 0.4s, width 0.4s ease-in-out;
+  transform: translateX(0);
+  overflow: hidden;
+  opacity: 1;
+  white-space: nowrap;
+}
+
+.sidebar-desktop.hidden {
+  transform: translateX(-100%);
+  opacity: 0;
+  width: 0;
+}
+
+.sidebar__drawer {
+  position: relative;
+
+  .back-btn {
+    position: absolute;
+    top: 12px;
+    right: 5px;
+
+    span {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  .MuiPaper-root {
+    width: 300px;
+  }
+}

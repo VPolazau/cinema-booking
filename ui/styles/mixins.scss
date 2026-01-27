@@ -1,0 +1,19 @@
+@use 'breakpoints' as *;
+
+@mixin mobile-screen {
+  @media (min-width: 0) and (max-width: #{$b-tablet - 1}) {
+    @content;
+  }
+}
+
+@mixin tablet-screen {
+  @media (min-width: $b-tablet) and (max-width: #{$b-desktop - 1}) {
+    @content;
+  }
+}
+
+@mixin desktop-screen {
+  @media (min-width: $b-desktop) {
+    @content;
+  }
+}
