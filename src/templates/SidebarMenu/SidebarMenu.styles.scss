@@ -1,0 +1,12 @@
+@use 'styles' as *;
+
+.sidebar-menu__wrapper {
+  position: relative;
+  width: 87%;
+  padding: 17px;
+
+  @include desktop-screen {
+    width: 100%;
+    padding: 0;
+  }
+}

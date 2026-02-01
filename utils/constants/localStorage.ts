@@ -1,0 +1,1 @@
+export const LOCAL_STORAGE_CINEMA_KEY = 'cinema_token'

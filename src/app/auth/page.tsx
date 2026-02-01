@@ -1,3 +1,12 @@
+'use client';
+
+import {AuthForm} from "@/templates";
+import { BasePage } from '@ui';
+
 export default function AuthPage() {
-    return <div style={{ padding: 16 }}>Auth (todo)</div>;
+    return (
+        <BasePage>
+            <AuthForm />
+        </BasePage>
+    )
 }

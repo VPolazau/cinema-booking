@@ -1,29 +1,26 @@
 'use client';
 
+
+import { useState } from 'react';
 import {
     Box,
     Drawer,
     IconButton
 } from '@mui/material';
-import { useState } from 'react';
+
 import {Icon} from '@ui';
 import { useCommonState, useDeviceMedia } from '@utils';
+
 import { SidebarMenu } from '../SidebarMenu';
 
 import './Sidebar.styles.scss'
 
-const isActive = (pathname: string | null, href: string) => {
-    if (!pathname) return false;
-    return pathname === href || pathname.startsWith(`${href}/`);
-};
-
 export const Sidebar = () => {
     const { isDesktop } = useDeviceMedia();
-    const [open, setOpen] = useState(false);
+    const { auth } = useCommonState();
 
-    // const { token = 'qwqwrq' } = useCommonState();
-    const token = 'qwe';
-    const isAuthed = Boolean(token);
+    const [open, setOpen] = useState(false);
+    const isAuthed = Boolean(auth.token);
 
     const toggleDrawer = () => setOpen((b) => !b);
 

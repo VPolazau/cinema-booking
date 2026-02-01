@@ -1,19 +1,22 @@
 'use client';
 
+import {FC, useMemo} from "react";
+import {useDispatch} from "react-redux";
+import {usePathname, useRouter} from "next/navigation";
+
 import {Box, Button, Stack, Typography} from "@mui/material";
 import {Separator} from "@ui";
-import {FC, useMemo} from "react";
-import {usePathname, useRouter} from "next/navigation";
+import {authActions} from "@/store/slice/authSlice";
+
+import { isActive } from './SidebarMenu.utils';
 import {ISidebarMenu} from "./SidebarMenu.declaration";
 
-const isActive = (pathname: string | null, href: string) => {
-    if (!pathname) return false;
-    return pathname === href || pathname.startsWith(`${href}/`);
-};
+import './SidebarMenu.styles.scss';
 
 export const SidebarMenu: FC<ISidebarMenu> = ({ isAuthed, onAfterNavigate, title = 'Cinema booking' }) => {
     const pathname = usePathname();
     const router = useRouter();
+    const dispatch = useDispatch();
 
     const navItems = useMemo(() => {
         const items: Array<{ label: string; href: string; requiresAuth?: boolean }> = [
@@ -36,6 +39,7 @@ export const SidebarMenu: FC<ISidebarMenu> = ({ isAuthed, onAfterNavigate, title
 
     const onAuthClick = () => {
         if (isAuthed) {
+            dispatch(authActions.logout());
             router.replace('/movies');
         } else {
             router.push('/auth?next=/my-tickets');
@@ -44,7 +48,7 @@ export const SidebarMenu: FC<ISidebarMenu> = ({ isAuthed, onAfterNavigate, title
     };
 
     return (
-        <Box sx={{ width: 280, p: 2 }}>
+        <Box className="sidebar-menu__wrapper">
             <Typography variant="h6" sx={{ mb: 2 }}>
                 Cinema booking
             </Typography>
@@ -53,7 +57,7 @@ export const SidebarMenu: FC<ISidebarMenu> = ({ isAuthed, onAfterNavigate, title
 
             <Stack spacing={1} marginTop={3}>
                 {navItems
-                    .filter((x) => !x.requiresAuth || isAuthed) // "Мои билеты" скрываем пока не автhed
+                    .filter((x) => !x.requiresAuth || isAuthed)
                     .map((x) => (
                         <Button
                             key={x.href}
@@ -62,8 +66,7 @@ export const SidebarMenu: FC<ISidebarMenu> = ({ isAuthed, onAfterNavigate, title
                             sx={{
                                 justifyContent: 'flex-start',
                                 textTransform: 'none',
-                                width: '18vw',
-                                minWidth: '260px'
+                                width: '100%',
                             }}
                         >
                             {x.label}
@@ -78,8 +81,7 @@ export const SidebarMenu: FC<ISidebarMenu> = ({ isAuthed, onAfterNavigate, title
                     sx={{
                         justifyContent: 'flex-start',
                         textTransform: 'none',
-                        width: '18vw',
-                        minWidth: '260px'
+                        width: '100%',
                     }}
                 >
                     {isAuthed ? 'Выход' : 'Вход'}

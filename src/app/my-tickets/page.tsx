@@ -1,3 +1,7 @@
-export default function MyTicketsPage() {
-    return <div style={{ padding: 16 }}>My tickets (todo)</div>;
+'use client';
+
+import { MyTicketsDetails } from '@/templates';
+
+export default function MyTicketsDetailsPage() {
+    return <MyTicketsDetails />
 }

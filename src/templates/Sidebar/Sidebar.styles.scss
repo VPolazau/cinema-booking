@@ -11,7 +11,8 @@
 
 .sidebar-desktop {
   padding-right: 8px;
-  width: 20vw;
+  max-width: 19vw;
+  min-width: 19vw;
   border-right: gray 1px solid;
   height: calc(100vh - 16px);
   transition: transform 0.4s ease-in-out, opacity 0.4s, width 0.4s ease-in-out;
